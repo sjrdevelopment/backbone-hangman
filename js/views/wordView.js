@@ -1,10 +1,13 @@
-define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView'], function($, Backbone, _, Word, LetterView) {
+define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gameModel', 'gameView'], function($, Backbone, _, Word, LetterView, Game, GameView) {
   var GameWord = new Word();
+  var GameModel = new Game();
+  var GameView = new GameView({
+    model: GameModel
+  });
 
-  var OtherView = Backbone.View.extend({
+  var WordView = Backbone.View.extend({
 
     el: '#word-wrapper',
-
 
     events: {
       'keypress #guess': 'lookForLetter',
@@ -16,6 +19,8 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView'], fun
       GameWord.fetch({
         success: this.render
       });
+
+
     },
 
     render: function() {
@@ -36,9 +41,12 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView'], fun
         return;
       }
 
-      var letterEntered = $(event.target).val().toUpperCase();
+      var $input = $(event.target);
+      var letterEntered = $input.val().toUpperCase();
+      $input.val('');
 
       console.log(letterEntered);
+      var count = 0;
 
       _.each(GameWord.models, function(model, index) {
 
@@ -48,11 +56,20 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView'], fun
           console.log('letter found');
 
           model.set('isShown', true);
+
+          count++;
+
         }
       });
+
+      if (count === 0) {
+        console.log('no match');
+        console.log(GameModel);
+        GameModel.trigger('failed', letterEntered);
+      }
     }
 
   });
 
-  return OtherView;
+  return WordView;
 });

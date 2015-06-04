@@ -1,8 +1,9 @@
 define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backbone, letter) {
 
-	var api = 'http://randomword.setgetgo.com/get.php';
+	var api = 'http://randomword.setgetgo.com/get.php',
+		Word;
 
-	var Word = Backbone.Collection.extend({
+	Word = Backbone.Collection.extend({
 
 	  // Reference to this collection's model.
 	  model: letter,
@@ -12,15 +13,13 @@ define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backb
 		return Backbone.sync(method, collection, options);
 	  },
 
-
 	  url: api,
 
 	  parse: function(response) {
-	    var letters = JSON.stringify(response.Word);
-	    var actualWord = letters.replace('"', '').split('\\')[0];
-	    var splitWord = actualWord.split('');
+	    var letters = JSON.stringify(response.Word),
+	    	actualWord = letters.replace('"', '').split('\\')[0].split('');
 
-	    return splitWord;
+	    return actualWord;
 	  }
 
 	});
