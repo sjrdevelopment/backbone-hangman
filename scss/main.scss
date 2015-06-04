@@ -1,0 +1,49 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #ccc;
+	font-family: Helvetica, Arial;
+
+	ul {
+
+		li {
+			list-style: none;
+			display: inline-block;
+			border-radius: 5px;
+			margin: 0px 4px;
+			background-color: #fff;
+			padding: 12px;
+			vertical-align: top;
+
+			.character {
+				display: none;
+
+
+
+			}
+
+			.character-wrapper {
+				border-bottom: 4px solid #414141;
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				color: #414141;
+				font-size: 30px;
+				text-transform: uppercase;
+				display: block;
+
+
+
+				&.shown {
+					border-bottom: 0;
+
+					.character {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}
