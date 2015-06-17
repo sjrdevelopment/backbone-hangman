@@ -1,33 +1,24 @@
 define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backbone, letter) {
 
-	var api = 'http://randomword.setgetgo.com/get.php',
+	// var api = 'http://randomword.setgetgo.com/get.php',
+		var api = 'http://backbonehangman.herokuapp.com/random',
 		Word;
 
 	Word = Backbone.Collection.extend({
 
 	  // Reference to this collection's model.
-	  model: letter,
+	  "model": letter,
 
-	  sync : function(method, collection, options) {
-		options.dataType = "jsonp";
-		return Backbone.sync(method, collection, options);
-	  },
+	  "url": api,
 
-	  url: api,
-
-	  parse: function(response) {
-	    var letters = JSON.stringify(response.Word),
-	    	actualWord = letters.replace('"', '').split('\\')[0].split('');
+	  "parse": function(response) {
+	    console.log(response.title);
+	    var actualWord = response.title.split('');
 
 	    return actualWord;
 	  }
 
 	});
 
-	//var myWord = new Word();
-
-	//console.log(myWord);
-	//myWord.fetch();
-
-    return Word;
+  return Word;
 });

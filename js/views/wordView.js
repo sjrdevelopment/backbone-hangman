@@ -14,8 +14,6 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
     },
 
     initialize: function() {
-     // GameWord = new Word();
-
       GameWord.fetch({
         success: this.render
       });
@@ -30,12 +28,14 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
     },
 
     render: function() {
-      console.log(GameWord);
+      console.log(GameWord.length, 'gameword <<<<');
+      _.each(GameWord.models, function(characterModel, index) {
 
-      _.each(GameWord.models, function(character, index) {
-        console.log(character);
+        if (characterModel.get('character') === " ") {
+          characterModel.set('character', '/');
+        }
 
-        var view = new LetterView({model: character});
+        var view = new LetterView({model: characterModel});
 
         $("#word-list").append( view.render().el );
       });
