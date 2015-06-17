@@ -20,6 +20,12 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
         success: this.render
       });
 
+      console.log(GameModel.defaults);
+
+      this.listenTo(GameModel, 'reset', function() {
+        console.log('game is resetting');
+      });
+
 
     },
 

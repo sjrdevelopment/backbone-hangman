@@ -10,20 +10,35 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 			this.on('failed', this.incorrectGuess);
 		},
 
+		resetGame: function () {
+			this.set('guessedLetters', []);
+			this.set('numberOfGuessesRemaining', 10);
+			this.trigger('reset');
+
+		},
+
 		incorrectGuess: function (letter) {
 			console.log('incorrect: ' + letter);
 
 			var newGuessedLetters = this.get('guessedLetters');
 
 			if (!_.contains(newGuessedLetters, letter)) {
-				var newIncorrectGuesses = this.get('numberOfGuessesRemaining') - 1;
 
-				newGuessedLetters.push(letter);
+				if(this.get('numberOfGuessesRemaining') === 1) {
+					alert('game over');
+					this.resetGame();
 
-				console.log(newIncorrectGuesses);
+				} else {
 
-				this.set('numberOfGuessesRemaining', newIncorrectGuesses);
-				this.set('guessedLetters', newGuessedLetters);
+					var newIncorrectGuesses = this.get('numberOfGuessesRemaining') - 1;
+
+					newGuessedLetters.push(letter);
+
+					console.log(newIncorrectGuesses);
+
+					this.set('numberOfGuessesRemaining', newIncorrectGuesses);
+					this.set('guessedLetters', newGuessedLetters);
+				}
 			}
 
 
