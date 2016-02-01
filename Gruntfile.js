@@ -28,5 +28,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['watch']);
-  //grunt.registerTask('dist', ['sass:dist', 'copy:dist']);
+  grunt.registerTask('dist', ['sass:dist', 'copy:dist']);
 }

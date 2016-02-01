@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backbone, letter) {
 
-	// var api = 'http://randomword.setgetgo.com/get.php',
-		var api = 'http://backbonehangman.herokuapp.com/random',
+	 var api = 'http://randomword.setgetgo.com/get.php',
+	//	var api = 'http://backbonehangman.herokuapp.com/random',
 		Word;
 
 	Word = Backbone.Collection.extend({
