@@ -10,7 +10,6 @@ define(['jquery', 'backbone', 'underscore', 'handlebars', 'textjs!../../html/tem
       },
 
       initialize: function() {
-        console.log('initialise view');
         this.render();
         this.listenTo(this.model.on('change', this.render.bind(this)));
       },

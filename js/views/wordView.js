@@ -14,9 +14,13 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
     },
 
     initialize: function() {
+      console.log('stu');
+        debugger;
       GameWord.fetch({
         success: this.render
       });
+
+      
 
       console.log(GameModel.defaults);
 
@@ -42,7 +46,6 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
     },
 
     lookForLetter:  function(event) {
-      console.log('test');
       if ( event.which !== 13 ) {
         return;
       }
@@ -51,12 +54,10 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
       var letterEntered = $input.val().toUpperCase();
       $input.val('');
 
-      console.log(letterEntered);
       var count = 0;
 
       _.each(GameWord.models, function(model, index) {
 
-          console.log(model.get('character'));
 
         if(model.get('character') === letterEntered) {
           console.log('letter found');
@@ -70,7 +71,6 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
 
       if (count === 0) {
         console.log('no match');
-        console.log(GameModel);
         GameModel.trigger('failed', letterEntered);
       }
     }
