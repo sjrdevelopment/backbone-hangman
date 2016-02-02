@@ -12,8 +12,7 @@ define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backb
 
 	  "parse": function(response) {
         debugger;
-	    console.log(response.title);
-	    var actualWord = response.title.split('');
+	    var actualWord = response.words[Math.round(Math.random() * 47, 10)].split('');
 
 	    return actualWord;
 	  }
