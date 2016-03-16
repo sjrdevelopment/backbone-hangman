@@ -5,7 +5,12 @@
 body {
 	background-color: #ccc;
 	font-family: Helvetica, Arial;
-
+    
+    .wrapper {
+        margin: auto;
+        width: 800px;
+    }
+    
 	ul {
 
 		li {
