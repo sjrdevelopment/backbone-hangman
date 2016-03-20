@@ -1,11 +1,29 @@
-define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gameModel', 'gameView'], function($, Backbone, _, Word, LetterView, Game, GameView) {
-  var GameWord = new Word();
-  var GameModel = new Game();
-  var GameView = new GameView({
-    model: GameModel
+define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'gameModel',
+  'gameView',
+  'wordCollection',
+  'letterView'
+], function(
+  $,
+  _,
+  Backbone,
+  GameModel,
+  GameView,
+  WordCollection,
+  LetterView
+  
+) {
+  var HangmanGameModel = new GameModel();
+  var HangmanWord = new WordCollection();
+
+  var HangmanGameView = new GameView({
+    model: HangmanGameModel
   });
 
-  var WordView = Backbone.View.extend({
+  var HangmanWordView = Backbone.View.extend({
 
     el: '#word-wrapper',
 
@@ -14,17 +32,12 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
     },
 
     initialize: function() {
-      console.log('stu');
-        debugger;
-      GameWord.fetch({
+      // 1. fetch a new word
+      HangmanWord.fetch({
         success: this.render
       });
 
-      
-
-      console.log(GameModel.defaults);
-
-      this.listenTo(GameModel, 'reset', function() {
+      this.listenTo(HangmanGameModel, 'reset', function() {
         console.log('game is resetting');
       });
 
@@ -32,8 +45,9 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
     },
 
     render: function() {
-      console.log(GameWord.length, 'gameword <<<<');
-      _.each(GameWord.models, function(characterModel, index) {
+      //console.log(HangmanGameWord.length, 'gameword <<<<');
+      console.log(HangmanWord, 'HangmanWord collection <<<<<<<<');
+      _.each(HangmanWord.models, function(characterModel, index) {
 
         if (characterModel.get('character') === " ") {
           characterModel.set('character', '/');
@@ -56,7 +70,7 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
 
       var count = 0;
 
-      _.each(GameWord.models, function(model, index) {
+      _.each(HangmanWord.models, function(model, index) {
 
 
         if(model.get('character') === letterEntered) {
@@ -71,11 +85,12 @@ define(['jquery', 'backbone', 'underscore', 'wordCollection', 'letterView', 'gam
 
       if (count === 0) {
         console.log('no match');
-        GameModel.trigger('failed', letterEntered);
+        debugger;
+        HangmanGameModel.trigger('failed', letterEntered);
       }
     }
 
   });
 
-  return WordView;
+  return HangmanWordView;
 });

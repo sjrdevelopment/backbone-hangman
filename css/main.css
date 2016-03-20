@@ -4,6 +4,9 @@
 body {
   background-color: #ccc;
   font-family: Helvetica, Arial; }
+  body .wrapper {
+    margin: auto;
+    width: 800px; }
   body ul li {
     list-style: none;
     display: inline-block;

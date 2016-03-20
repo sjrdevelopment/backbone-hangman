@@ -7,11 +7,12 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 		},
 
 		parse: function(data) {
-			var letterData = {};
-			letterData.character = data.toUpperCase();
+			var letterData = {
+				character: data.toUpperCase()
+			}
+
 			return letterData;
 		}
-
 	});
 
     return Letter;

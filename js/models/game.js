@@ -2,6 +2,8 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 
 	var Game = Backbone.Model.extend({
 		defaults: {
+			// setting defualts will automatically set attributes on a model
+			// saves setting manually on load
 			guessedLetters: [],
 			numberOfGuessesRemaining: 10
 		},
@@ -14,15 +16,14 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 			this.set('guessedLetters', []);
 			this.set('numberOfGuessesRemaining', 10);
 			this.trigger('reset');
-
 		},
 
 		incorrectGuess: function (letter) {
 			console.log('incorrect: ' + letter);
 
-			var newGuessedLetters = this.get('guessedLetters');
+			var uniqueGuessedLetters = this.get('guessedLetters');
 
-			if (!_.contains(newGuessedLetters, letter)) {
+			if (!_.contains(uniqueGuessedLetters, letter)) {
 
 				if(this.get('numberOfGuessesRemaining') === 1) {
 					alert('game over');
@@ -30,14 +31,15 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 
 				} else {
 
+					debugger;
 					var newIncorrectGuesses = this.get('numberOfGuessesRemaining') - 1;
 
-					newGuessedLetters.push(letter);
+					uniqueGuessedLetters.push(letter);
 
 					console.log(newIncorrectGuesses);
 
 					this.set('numberOfGuessesRemaining', newIncorrectGuesses);
-					this.set('guessedLetters', newGuessedLetters);
+					this.set('guessedLetters', uniqueGuessedLetters);
 				}
 			}
 

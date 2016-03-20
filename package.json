@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":  "nodemon index.js"
+    "start": "nodemon index.js"
   },
   "author": "Stuart Robinson, Stu Huntington",
   "license": "ISC",
   "dependencies": {
     "express": "^4.12.4",
     "grunt": "^0.4.5",
+    "grunt-contrib-connect": "^1.0.0",
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-sass": "^0.9.2",
     "grunt-contrib-watch": "^0.6.1",

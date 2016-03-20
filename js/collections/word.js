@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backbone, letter) {
 
-	var api = 'http://localhost:8888/myjson.json',
+	var api = '/myjson.json',
 	//	var api = 'http://backbonehangman.herokuapp.com/random',
 		Word;
 
@@ -11,12 +11,11 @@ define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backb
 	  "url": api,
 
 	  "parse": function(response) {
-        debugger;
-	    var actualWord = response.words[Math.round(Math.random() * 47, 10)].split('');
-
-	    return actualWord;
+	  	// modify data before it is sent to the model
+	  	// in this case choosing a random word from the data
+	  	// from this array Backbone creates the letter models
+	   	return response.words[Math.round(Math.random() * 47, 10)].split('');
 	  }
-
 	});
 
   return Word;

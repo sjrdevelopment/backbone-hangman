@@ -20,13 +20,22 @@ module.exports = function(grunt) {
         files: 'scss/*.scss',
         tasks: ['sass']
       }
-    }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: '.'
+        }
+      }
+    } 
   });
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['connect', 'watch']);
   grunt.registerTask('dist', ['sass:dist', 'copy:dist']);
 }

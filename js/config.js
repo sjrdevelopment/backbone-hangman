@@ -1,4 +1,4 @@
-//var require = require || {};
+var require = require || {};
 
 require.config({
 
