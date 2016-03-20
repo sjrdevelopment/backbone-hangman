@@ -13,7 +13,6 @@ require.config({
         "appController": "appController",
         "letterModel": "models/letter",
         "wordCollection": "collections/word",
-        "wordView": "views/wordView",
         "letterView": "views/letterView",
         "gameView": "views/gameView",
         "gameModel": "models/game"

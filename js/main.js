@@ -1,5 +1,26 @@
-require(['jquery', 'underscore', 'backbone', 'wordView'], function ($, _, Backbone, WordView, GameView) {
-    
-    var View = new WordView();
+require([
+    'jquery',
+    'underscore',
+    'backbone',
+    'gameModel',
+    'wordCollection',
+    'gameView'
+], function (
+    $,
+    _,
+    Backbone,
+    GameModel,
+    WordCollection,
+    GameView
+) {
+
+  var HangmanWord = new WordCollection();
+  var HangmanGameModel = new GameModel({
+    word: HangmanWord
+  });
+
+  var HangmanGameView = new GameView({
+    model: HangmanGameModel
+  });
 
 });

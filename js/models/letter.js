@@ -22,6 +22,10 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 
 		getCharacter: function() {
 			return this.get('character');
+		},
+
+		setSpaceCharacter: function() {
+			this.set('character', '/');
 		}
 	});
 
