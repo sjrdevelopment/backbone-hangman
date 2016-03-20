@@ -1,7 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backbone, letter) {
 
 	var api = '/myjson.json',
-	//	var api = 'http://backbonehangman.herokuapp.com/random',
 		Word;
 
 	Word = Backbone.Collection.extend({
@@ -16,7 +15,6 @@ define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backb
 	  	// from this array Backbone creates the letter models
 	   	
 	   	return response.words[Math.round(Math.random() * 47, 10)].split('');
-	 
 	  }
 	});
 

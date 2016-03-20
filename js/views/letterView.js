@@ -4,11 +4,6 @@ define(['jquery', 'backbone', 'underscore', 'handlebars', 'textjs!../../html/tem
       //... is a list tag.
       tagName: 'li',
 
-      // The DOM events specific to an item.
-      events: {
-
-      },
-
       initialize: function() {
         this.render();
         this.listenTo(this.model.on('change', this.render.bind(this)));

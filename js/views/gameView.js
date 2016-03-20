@@ -24,15 +24,9 @@ define([
 
     initialize: function() {
 
- 
-
       this.render();
 
-
-
       this.listenTo(this.model.on('wordHappened', function(data) {
-
-        //$("#word-list").html('');
 
         console.log(this.get('word'), 'HangmanWord collection <<<<<<<<');
         _.each(this.get('word').models, function(characterModel, index) {
@@ -46,10 +40,6 @@ define([
         });
       }));
       
-
-
-
-
       this.listenTo(this.model.on('change', this.render.bind(this)));
     },
 
@@ -69,22 +59,23 @@ define([
 
       var $input = $(event.target);
       var letterEntered = $input.val().toUpperCase();
-      $input.val('');
-
       var count = 0;
 
-      _.each(this.model.get('word').models, function(letterModel, index) {
+      $input.val('');
+
+      _.each(this.model.get('word').models, _.bind(function(letterModel, index) {
 
 
-        if(letterModel.getCharacter() === letterEntered) {
+        if (letterModel.getCharacter() === letterEntered) {
           console.log('letter found');
 
           letterModel.showLetter();
 
-          count++;
+          this.model.trigger('correct');
 
+          count++;
         }
-      });
+      }, this));
 
       if (count === 0) {
         console.log('no match');

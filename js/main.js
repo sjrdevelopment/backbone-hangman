@@ -15,6 +15,8 @@ require([
 ) {
 
   var HangmanWord = new WordCollection();
+
+  // Models can accept two parameters, attributes and options
   var HangmanGameModel = new GameModel({
     word: HangmanWord
   });
