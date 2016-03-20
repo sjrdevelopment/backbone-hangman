@@ -1,4 +1,14 @@
-define(['jquery', 'backbone', 'underscore', 'handlebars', 'textjs!../../html/templates/letter.hbs'], function($, Backbone, _, Handlebars, letterTemplate) {
+define([
+  'backbone',
+  'underscore',
+  'handlebars',
+  'textjs!../../html/templates/letter.hbs'
+], function(
+  Backbone,
+  _,
+  Handlebars,
+  letterTemplate
+) {
   var LetterView = Backbone.View.extend({
 
       //... is a list tag.
@@ -17,7 +27,6 @@ define(['jquery', 'backbone', 'underscore', 'handlebars', 'textjs!../../html/tem
 
       // Re-renders the titles of the todo item.
       render: function() {
-     
         this.$el.html(this.letterTemplate(this.model.attributes));
 
         return this;

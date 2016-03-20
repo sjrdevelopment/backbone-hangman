@@ -1,4 +1,4 @@
-define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
+define(['backbone', 'underscore'], function(Backbone, _) {
 
 	var Game = Backbone.Model.extend({
 		defaults: {
@@ -9,21 +9,16 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 		},
 
 		initialize: function (attributes, options) {
-
 			this.getNewWord();
-			
-			this.on('failed', this.incorrectGuess);
-
-			this.on('correct', this.correctGuess);
+			this.on('incorrectGuess', this.onIncorrectGuess);
+			this.on('correctGuess', this.onCorrectGuess);
 		},
 
 		getNewWord: function() {
 			this.get('word').fetch({
 				success: _.bind(function(data) {
-				
 					this.set('numberOfHiddenLetters', this.get('word').length);
 					this.trigger('wordHappened');
-
 				}, this)
 			});
 		},
@@ -37,11 +32,10 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 			this.getNewWord();
 		},
 
-		incorrectGuess: function (letter) {
-			console.log('incorrect: ' + letter);
-
+		onIncorrectGuess: function (letter) {
 			var uniqueGuessedLetters = this.get('guessedLetters');
 
+			// we only want to record unique incorrect guesses
 			if (!_.contains(uniqueGuessedLetters, letter)) {
 
 				if (this.get('numberOfGuessesRemaining') === 1) {
@@ -52,7 +46,6 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 
 				} else {
 					var newIncorrectGuesses = this.get('numberOfGuessesRemaining') - 1;
-
 					uniqueGuessedLetters.push(letter);
 
 					this.set('numberOfGuessesRemaining', newIncorrectGuesses);
@@ -61,7 +54,7 @@ define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
 			}
 		},
 
-		correctGuess: function () {
+		onCorrectGuess: function () {
 			if (this.get('numberOfHiddenLetters') === 1) {
 				alert('Correct! Game complete');
 				this.resetGame();

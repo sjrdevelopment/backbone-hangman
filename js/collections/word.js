@@ -1,10 +1,15 @@
-define(['jquery', 'underscore', 'backbone', 'letterModel'], function($, _, Backbone, letter) {
-
+define([
+	'backbone',
+	'letterModel'
+], function(
+	Backbone,
+	letter
+) {
 	var api = '/myjson.json',
 		Word;
 
 	Word = Backbone.Collection.extend({
-	  // Reference to this collection's model.
+	  // Reference to this collection's model constructor
 	  "model": letter,
 
 	  "url": api,

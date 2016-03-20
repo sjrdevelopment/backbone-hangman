@@ -23,21 +23,19 @@ define([
     el:  ".guess-area",
 
     initialize: function() {
-
       this.render();
 
       this.listenTo(this.model.on('wordHappened', function(data) {
 
+        // split this into own function
+
         console.log(this.get('word'), 'HangmanWord collection <<<<<<<<');
+
         _.each(this.get('word').models, function(characterModel, index) {
-
-          if (characterModel.get('character') === " ") {
-            characterModel.set('character', '/');
-          }
-
           var view = new LetterView({model: characterModel});
           $("#word-list").append( view.render().el );
         });
+
       }));
       
       this.listenTo(this.model.on('change', this.render.bind(this)));
@@ -57,30 +55,27 @@ define([
         return;
       }
 
-      var $input = $(event.target);
-      var letterEntered = $input.val().toUpperCase();
-      var count = 0;
+      var $input = $(event.target),
+          letterEntered = $input.val().toUpperCase(),
+          count = 0;
 
       $input.val('');
 
+      // tidy this up
+
       _.each(this.model.get('word').models, _.bind(function(letterModel, index) {
 
-
         if (letterModel.getCharacter() === letterEntered) {
-          console.log('letter found');
-
           letterModel.showLetter();
 
-          this.model.trigger('correct');
+          this.model.trigger('correctGuess');
 
           count++;
         }
       }, this));
 
       if (count === 0) {
-        console.log('no match');
-  
-        this.model.trigger('failed', letterEntered);
+        this.model.trigger('incorrectGuess', letterEntered);
       }
     }
   });

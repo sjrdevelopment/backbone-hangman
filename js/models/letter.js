@@ -1,4 +1,4 @@
-define(['jquery', 'backbone', 'underscore'], function($, Backbone, _) {
+define(['backbone'], function(Backbone) {
 
 	var Letter = Backbone.Model.extend({
 		defaults: {

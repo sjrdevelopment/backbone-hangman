@@ -1,14 +1,8 @@
 require([
-    'jquery',
-    'underscore',
-    'backbone',
     'gameModel',
     'wordCollection',
     'gameView'
 ], function (
-    $,
-    _,
-    Backbone,
     GameModel,
     WordCollection,
     GameView
