@@ -16,6 +16,11 @@ define([
   LetterView
   
 ) {
+
+  // this needs renaming / moving into a controller or game view / game model
+
+
+  
   var HangmanGameModel = new GameModel();
   var HangmanWord = new WordCollection();
 
@@ -70,13 +75,13 @@ define([
 
       var count = 0;
 
-      _.each(HangmanWord.models, function(model, index) {
+      _.each(HangmanWord.models, function(letterModel, index) {
 
 
-        if(model.get('character') === letterEntered) {
+        if(letterModel.getCharacter() === letterEntered) {
           console.log('letter found');
 
-          model.set('isShown', true);
+          letterModel.showLetter();
 
           count++;
 
