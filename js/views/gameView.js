@@ -25,7 +25,7 @@ define([
     initialize: function() {
       this.render();
 
-      this.listenTo(this.model.on('wordHappened', function(data) {
+      this.listenTo(this.model.on('wordReady', function(data) {
 
         // split this into own function
 

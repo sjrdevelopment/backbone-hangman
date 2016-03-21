@@ -8,7 +8,8 @@ body {
     
     .wrapper {
         margin: auto;
-        width: 800px;
+        width: 100%;
+        padding: 40px;
     }
     
 	ul {
@@ -17,7 +18,7 @@ body {
 			list-style: none;
 			display: inline-block;
 			border-radius: 5px;
-			margin: 0px 4px;
+			margin: 4px;
 			background-color: #fff;
 			padding: 12px;
 			vertical-align: top;
@@ -53,8 +54,22 @@ body {
 	}
 
 	input {
-		margin: 0 42px;
 		font-size: 24px;
 		padding: 8px;
+		width: 140px;
+	}
+
+	#word-wrapper {
+		float: left;
+		width: 60%;
+	}
+
+	.guess-area {
+		float: right;
+    	width: 38%;
+
+    	ul {
+    		padding: 0;
+    	}
 	}
 }

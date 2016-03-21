@@ -9,7 +9,7 @@ define([
 		Word;
 
 	Word = Backbone.Collection.extend({
-	  // Reference to this collection's model constructor
+	  // The model type this collection uses
 	  "model": letter,
 
 	  "url": api,
@@ -19,7 +19,7 @@ define([
 	  	// in this case choosing a random word from the data
 	  	// from this array Backbone creates the letter models
 	   	
-	   	return response.words[Math.round(Math.random() * 47, 10)].split('');
+	   	return response.words[Math.round(Math.random() * 100, 10)].split('');
 	  }
 	});
 

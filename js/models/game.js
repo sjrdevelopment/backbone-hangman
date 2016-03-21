@@ -18,7 +18,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 			this.get('word').fetch({
 				success: _.bind(function(data) {
 					this.set('numberOfHiddenLetters', this.get('word').length);
-					this.trigger('wordHappened');
+					this.trigger('wordReady');
 				}, this)
 			});
 		},
@@ -26,7 +26,6 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 		resetGame: function () {
 			this.set('guessedLetters', []);
 			this.set('numberOfGuessesRemaining', this.defaults.numberOfGuessesRemaining);
-			this.set('')
 			this.get('word').reset();
 
 			this.getNewWord();
@@ -39,7 +38,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 			if (!_.contains(uniqueGuessedLetters, letter)) {
 
 				if (this.get('numberOfGuessesRemaining') === 1) {
-					alert('game over, word was ' + this.get('word').models.map(function(letterModel, index) {
+					alert('game over, the word was ' + this.get('word').models.map(function(letterModel, index) {
 						return letterModel.getCharacter()
 					}).join(''));
 					this.resetGame();

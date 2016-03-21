@@ -6,12 +6,13 @@ body {
   font-family: Helvetica, Arial; }
   body .wrapper {
     margin: auto;
-    width: 800px; }
+    width: 100%;
+    padding: 40px; }
   body ul li {
     list-style: none;
     display: inline-block;
     border-radius: 5px;
-    margin: 0px 4px;
+    margin: 4px;
     background-color: #fff;
     padding: 12px;
     vertical-align: top; }
@@ -31,8 +32,16 @@ body {
         body ul li .character-wrapper.shown .character {
           display: block; }
   body input {
-    margin: 0 42px;
     font-size: 24px;
-    padding: 8px; }
+    padding: 8px;
+    width: 140px; }
+  body #word-wrapper {
+    float: left;
+    width: 60%; }
+  body .guess-area {
+    float: right;
+    width: 38%; }
+    body .guess-area ul {
+      padding: 0; }
 
 /*# sourceMappingURL=main.css.map */
