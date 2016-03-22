@@ -10,11 +10,11 @@ define([
 
 	Word = Backbone.Collection.extend({
 	  // The model type this collection uses
-	  "model": letter,
+	  model: letter,
 
-	  "url": api,
+	  url: api,
 
-	  "parse": function(response) {
+	  parse: function(response) {
 	  	// modify data before it is sent to the model
 	  	// in this case choosing a random word from the data
 	  	// from this array Backbone creates the letter models

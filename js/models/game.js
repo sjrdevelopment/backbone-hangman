@@ -63,5 +63,5 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 		}
 	});
 
-    return Game;
+  return Game;
 });

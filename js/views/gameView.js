@@ -20,28 +20,28 @@ define([
       'keypress #guess': 'lookForLetter',
     },
 
-    el:  ".guess-area",
+    el:  '.guess-area',
 
     initialize: function() {
       this.render();
 
-      this.listenTo(this.model.on('wordReady', function(data) {
+      // this.listenTo(this.model.on('wordReady', this.onWordReady));
+      // this.listenTo(this.model.on('change', this.render.bind(this)));
 
-        // split this into own function
-
-        console.log(this.get('word'), 'HangmanWord collection <<<<<<<<');
-
-        _.each(this.get('word').models, function(characterModel, index) {
-          var view = new LetterView({model: characterModel});
-          $("#word-list").append( view.render().el );
-        });
-
-      }));
-      
-      this.listenTo(this.model.on('change', this.render.bind(this)));
+      this.model.on('wordReady', this.onWordReady);
+      this.model.on('change', this.render.bind(this));
     },
 
-    "gameTemplate":  Handlebars.compile(gameTemplate),
+    onWordReady: function() {
+			console.log(this.get('word'), 'HangmanWord collection <<<<<<<<');
+
+			_.each(this.get('word').models, function(characterModel, index) {
+				var view = new LetterView({model: characterModel});
+				$('#word-list').append( view.render().el );
+			});
+    },
+
+    gameTemplate:  Handlebars.compile(gameTemplate),
 
     // Re-renders the titles of the todo item.
     render: function() {
@@ -60,8 +60,6 @@ define([
           count = 0;
 
       $input.val('');
-
-      // tidy this up
 
       _.each(this.model.get('word').models, _.bind(function(letterModel, index) {
 

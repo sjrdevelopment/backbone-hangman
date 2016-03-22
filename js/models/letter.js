@@ -22,12 +22,8 @@ define(['backbone'], function(Backbone) {
 
 		getCharacter: function() {
 			return this.get('character');
-		},
-
-		setSpaceCharacter: function() {
-			this.set('character', '/');
 		}
 	});
 
-    return Letter;
+  return Letter;
 });
